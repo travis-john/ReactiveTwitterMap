@@ -1,0 +1,45 @@
+<head>
+  <title>ReactiveTwitterMap</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    {{> loginButtons }}
+    
+    {{> list }}
+    
+</div>
+    
+    
+
+</body>
+
+<template name="list">
+
+    <ul>
+        {{#if currentUser}}
+        
+        {{#each userInCollection}}
+    <li>
+        
+        <img src="{{services.twitter.profile_image_url}}">
+        {{profileName}}
+        </li>
+        {{/each}}
+            {{> map }}
+        {{/if}}
+    </ul>
+
+
+</template>
+
+<template name="map">
+  <div class="map-container">
+      {{#unless geolocationError }}
+      
+    {{> googleMap name="map" options=exampleMapOptions }}
+      {{ else }}
+      Geolocation failed: {{geolocationError }}
+      {{/unless}}
+  </div>
+</template>
